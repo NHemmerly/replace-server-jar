@@ -10,8 +10,10 @@ def trade_server_jar(ssh):
     _stdin, stdout, _stderr = ssh.exec_command(command)
     ssh.close()
 
-def scp_server_jar(server, ssh):
-    blah = 'blah'
+def scp_server_jar(ssh):
+    with SCPClient(ssh.get_transport()) as scp:
+        scp.put('file path to new server folder')
+        scp.close()
 
 def stop_mc_server(ssh):
     command = 'systemctl stop minecraft.service'
